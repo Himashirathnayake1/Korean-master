@@ -1,0 +1,37 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f9fafb"/>
+    </linearGradient>
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#E879F9"/>
+    </linearGradient>
+    <filter id="logoShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.15)"/>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with gradient -->
+  <circle cx="60" cy="60" r="60" fill="url(#bgGradient)" filter="url(#logoShadow)"/>
+  
+  <!-- Korean character background circle -->
+  <circle cx="60" cy="45" r="28" fill="url(#purpleGradient)" opacity="0.1"/>
+  
+  <!-- Korean character -->
+  <text x="60" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="url(#purpleGradient)">한</text>
+  
+  <!-- Korean flag emoji -->
+  <text x="60" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">🇰🇷</text>
+  
+  <!-- Decorative dots -->
+  <circle cx="30" cy="30" r="2" fill="#E879F9" opacity="0.6"/>
+  <circle cx="90" cy="30" r="2" fill="#A855F7" opacity="0.6"/>
+  <circle cx="30" cy="90" r="2" fill="#A855F7" opacity="0.6"/>
+  <circle cx="90" cy="90" r="2" fill="#8B5CF6" opacity="0.6"/>
+  
+  <!-- Bottom accent -->
+  <rect x="30" y="100" width="60" height="2" rx="1" fill="url(#purpleGradient)" opacity="0.7"/>
+</svg>
