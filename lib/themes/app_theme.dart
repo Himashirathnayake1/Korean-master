@@ -1,19 +1,44 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Color constants
-  static const Color primaryPurple = Color(0xFF8B5CF6);
-  static const Color lightPurple = Color(0xFFA855F7);
+  // Color constants - Updated to match the image exactly
+  static const Color primaryPurple = Color(
+    0xFF7F4BF7,
+  ); // Main purple from image
+  static const Color lightPurple = Color(
+    0xFFB794F6,
+  ); // Light purple for MASTER text
   static const Color pinkPurple = Color(0xFFE879F9);
-  static const Color darkPurple = Color(0xFF7C3AED);
+  static const Color darkPurple = Color(0xFF553C9A); // Darker shade
+
+  // Background colors from image
+  static const Color splashBackground = Color(
+    0xFFF5F5F7,
+  ); // Light gray background
   static const Color backgroundGray = Color(0xFFE5E7EB);
-  static const Color darkGray = Color(0xFF374151);
   static const Color lightGray = Color(0xFFF9FAFB);
+  static const Color mediumGray = Color(0xFF9CA3AF); // For "powered by" text
+  static const Color darkGray = Color(0xFF374151); // For "ideacipher" text
+
+  // Standard colors
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color success = Color(0xFF10B981);
   static const Color warning = Color(0xFFF59E0B);
   static const Color error = Color(0xFFEF4444);
+
+  // Register screen specific colors
+  static const Color inputBackground = Color(0xFFF9FAFB);
+  static const Color inputBorder = Color(0xFFE5E7EB);
+  static const Color textSecondary = Color(0xFF6B7280);
+  static const Color linkColor = Color(0xFF7C3AED);
+
+  // Premium screen specific colors
+  static const Color premiumCardBorder = Color(0xFF7F4BF7);
+  static const Color basicCardBorder = Color(0xFFE5E7EB);
+  static const Color checkGreen = Color(0xFF22C55E);
+  static const Color disabledGray = Color(0xFF9CA3AF);
+  static const Color tableHeaderGray = Color(0xFFF3F4F6);
 
   // Gradient definitions
   static const LinearGradient primaryGradient = LinearGradient(
@@ -34,7 +59,204 @@ class AppTheme {
     colors: [white, lightGray],
   );
 
-  // Text styles
+  // Text styles for splash screen matching the image
+  static TextStyle splashKoreanText(double screenWidth) => TextStyle(
+    fontSize: screenWidth * 0.12,
+    fontWeight: FontWeight.w900,
+    color: primaryPurple,
+    letterSpacing: 2,
+    height: 1.0,
+  );
+
+  static TextStyle splashMasterText(double screenWidth) => TextStyle(
+    fontSize: screenWidth * 0.12,
+    fontWeight: FontWeight.w900,
+    color: lightPurple,
+    letterSpacing: 2,
+    height: 1.0,
+  );
+
+  static TextStyle splashPoweredByText(double screenWidth) => TextStyle(
+    fontSize: 10.58, // Exact size in px as specified
+    fontFamily: 'Gilroy',
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal, // This is "Regular"
+    color: mediumGray,
+    height: 1.0, // 100% line-height
+    letterSpacing: 0, // 0% letter spacing
+  );
+
+  static TextStyle splashBrandText(double screenWidth) => TextStyle(
+    fontSize: 20.36, // Exact size in px as specified
+    fontFamily: 'Gilroy',
+    fontWeight: FontWeight.w500, // Medium weight
+    fontStyle: FontStyle.normal, // This is "Medium" style
+    color: darkGray,
+    height: 1.0, // 100% line-height
+    letterSpacing: 0, // 0% letter spacing
+  );
+
+  // Logo container decoration for splash screen
+  static BoxDecoration splashLogoDecoration = BoxDecoration(
+    color: const Color.fromRGBO(255, 255, 255, 1),
+    borderRadius: BorderRadius.circular(24),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.1),
+        blurRadius: 20,
+        offset: const Offset(0, 8),
+        spreadRadius: 0,
+      ),
+    ],
+  );
+
+  // Register screen text styles
+  static const TextStyle registerTitle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 30,
+    fontWeight: FontWeight.w700,
+    color: primaryPurple,
+    height: 1.3,
+    letterSpacing: -0.01, // -1% letter spacing
+  );
+
+  static const TextStyle registerSubtitle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: FontWeight.w300, // 300 is "Light" weight
+    fontStyle: FontStyle.normal, // Normal font style
+    color: Color.fromRGBO(0, 0, 0, 1),
+    height: 1.25, // 125% line height
+    letterSpacing: 0, // 0% letter spacing
+  );
+
+  static const TextStyle inputLabel = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 14,
+    fontWeight: FontWeight.w400, // 400 is Regular
+    fontStyle: FontStyle.normal, // Regular style
+    color: Color.fromRGBO(0, 0, 0, 1),
+    height: 1.25, // 125% line height
+    letterSpacing: 0, // 0% letter spacing
+  );
+
+  // Register screen interactive text styles
+  static const TextStyle linkText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: linkColor,
+    decoration: TextDecoration.none,
+  );
+
+  static const TextStyle loginLinkText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: black,
+    decoration: TextDecoration.underline,
+  );
+
+  static const TextStyle buttonText = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: white,
+    letterSpacing: 0,
+  );
+
+  static const TextStyle footerText = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: textSecondary,
+    letterSpacing: 0,
+  );
+
+  // Form field text styles
+  static const TextStyle inputText = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: black,
+    letterSpacing: 0,
+  );
+
+  static const TextStyle inputHint = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: textSecondary,
+    letterSpacing: 0,
+  );
+
+  static const TextStyle inputError = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: error,
+    letterSpacing: 0,
+  );
+
+  // Premium screen text styles
+  static const TextStyle premiumTitle = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
+    color: primaryPurple,
+    height: 1.2,
+  );
+
+  static const TextStyle premiumSubtitle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: textSecondary,
+    height: 1.5,
+  );
+
+  static const TextStyle planTitle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: white,
+  );
+
+  static const TextStyle planDuration = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: black,
+    height: 1.3,
+  );
+
+  static const TextStyle planPrice = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
+    color: black,
+    height: 1.2,
+  );
+
+  static const TextStyle planAccess = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: textSecondary,
+  );
+
+  static const TextStyle featureLabel = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: black,
+  );
+
+  static const TextStyle tableHeader = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: black,
+  );
+
+  static const TextStyle cancelText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: textSecondary,
+    height: 1.5,
+  );
+
+  // Original text styles for other screens
   static const TextStyle headlineLarge = TextStyle(
     fontSize: 42,
     fontWeight: FontWeight.bold,
@@ -116,6 +338,15 @@ class AppTheme {
     textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
   );
 
+  static final ButtonStyle registerButtonStyle = ElevatedButton.styleFrom(
+    backgroundColor: primaryPurple,
+    foregroundColor: white,
+    elevation: 0,
+    minimumSize: const Size(double.infinity, 56),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    textStyle: buttonText,
+  );
+
   static final ButtonStyle secondaryButtonStyle = ElevatedButton.styleFrom(
     backgroundColor: white,
     foregroundColor: primaryPurple,
@@ -162,28 +393,120 @@ class AppTheme {
     ],
   );
 
-  // Input decoration
-  static final InputDecoration inputDecoration = InputDecoration(
-    filled: true,
-    fillColor: lightGray,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide.none,
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: Colors.transparent),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: primaryPurple, width: 2),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: error, width: 2),
-    ),
-    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-  );
+  // Input decoration theme
+  static final InputDecorationThemeData inputDecorationTheme =
+      InputDecorationThemeData(
+        filled: true,
+        fillColor: lightGray,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Colors.transparent),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: primaryPurple, width: 2),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: error, width: 2),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
+      );
+
+  // Input decoration helper method
+  static InputDecoration inputDecoration({
+    String? labelText,
+    String? hintText,
+    Widget? prefixIcon,
+    Widget? suffixIcon,
+  }) {
+    return InputDecoration(
+      filled: true,
+      fillColor: lightGray,
+      labelText: labelText,
+      hintText: hintText,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: Colors.transparent),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: primaryPurple, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: error, width: 2),
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    );
+  }
+
+  // Register screen specific input decoration
+  static InputDecoration registerInputDecoration({
+    String? hintText,
+    Widget? suffixIcon,
+  }) {
+    return InputDecoration(
+      filled: true,
+      fillColor: inputBackground,
+      hintText: hintText,
+      hintStyle: inputHint,
+      suffixIcon: suffixIcon,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: inputBorder, width: 1),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: inputBorder, width: 1),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: primaryPurple, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: error, width: 2),
+      ),
+      errorStyle: inputError,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+    );
+  }
+
+  // Reusable method for creating consistent text field decoration
+  static InputDecoration createInputDecoration({
+    String? hintText,
+    String? labelText,
+    Widget? suffixIcon,
+    Widget? prefixIcon,
+    bool isRegisterStyle = false,
+  }) {
+    if (isRegisterStyle) {
+      return registerInputDecoration(
+        hintText: hintText,
+        suffixIcon: suffixIcon,
+      );
+    }
+    return inputDecoration(
+      labelText: labelText,
+      hintText: hintText,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
+    );
+  }
 
   // App bar theme
   static const AppBarTheme appBarTheme = AppBarTheme(
@@ -209,7 +532,7 @@ class AppTheme {
       appBarTheme: appBarTheme,
       elevatedButtonTheme: ElevatedButtonThemeData(style: primaryButtonStyle),
       outlinedButtonTheme: OutlinedButtonThemeData(style: outlinedButtonStyle),
-      inputDecorationTheme: inputDecoration,
+      inputDecorationTheme: inputDecorationTheme,
       fontFamily: 'Roboto',
       textTheme: const TextTheme(
         headlineLarge: headlineLarge,
