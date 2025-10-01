@@ -13,32 +13,28 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  final List<String> _otpDigits = ['1', '2', '3', '4', '5'];
+  final List<String> _otpDigits = ['', '', '', '', ''];
+  final List<TextEditingController> _controllers = List.generate(
+    5,
+    (index) => TextEditingController(),
+  );
   int _currentDigitIndex = 0;
 
-  
-  void _onKeypadDigitPressed(String digit) {
-    if (_currentDigitIndex < _otpDigits.length) {
-      setState(() {
-        _otpDigits[_currentDigitIndex] = digit;
-        _currentDigitIndex++;
-      });
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
     }
+    super.dispose();
   }
 
-  void _onDeletePressed() {
-    if (_currentDigitIndex > 0) {
-      setState(() {
-        _currentDigitIndex--;
-        _otpDigits[_currentDigitIndex] = '';
-      });
-    }
-  }
-
-  
   void _verifyOtp() {
+    // Collect all entered digits
+    final enteredOtp =
+        _controllers.map((controller) => controller.text).toList();
+
     // Check if all digits are filled
-    if (!_otpDigits.contains('')) {
+    if (!enteredOtp.contains('')) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Verification successful!')));
@@ -84,7 +80,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               const SizedBox(height: 40),
 
               // Title
-              const Text(
+           Text(
                 'Verify your phone number',
                 style: AppTheme.registerLoginTitle,
                 textAlign: TextAlign.center,
@@ -96,7 +92,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                   style: AppTheme.inputLabel,
+                  style: AppTheme.inputLabel,
                   children: [
                     const TextSpan(
                       text:
@@ -104,9 +100,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     ),
                     TextSpan(
                       text: widget.phoneNumber,
-                      style: AppTheme.inputLabel.copyWith(
-                        color: Colors.black,
-                      ),
+                      style: AppTheme.inputLabel.copyWith(color: Colors.black,fontWeight: FontWeight.w600,),
                     ),
                   ],
                 ),
@@ -126,9 +120,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                 Text(
                     'I didn\'t receive a code',
-                     style: AppTheme.inputLabel,
+                    style: AppTheme.inputLabel,
                   ),
                   const SizedBox(width: 8),
                   GestureDetector(
@@ -136,7 +130,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     child: Text(
                       'Resend',
                       style: AppTheme.inputLabel.copyWith(
-                       
                         fontWeight: FontWeight.w600,
                         color: Colors.black87,
                       ),
@@ -147,23 +140,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
               const SizedBox(height: 24),
 
-            
               SizedBox(
                 width: double.infinity,
                 height: 56,
-                child: CustomButton(
-                  onPressed: _verifyOtp,
-               
-                  text: 'Verify',
-                
-                ),
+                child: CustomButton(onPressed: _verifyOtp, text: 'Verify'),
               ),
 
               const Spacer(),
-
-              // Custom numeric keypad
-            
-
               const SizedBox(height: 20),
             ],
           ),
@@ -191,64 +174,45 @@ class _VerificationScreenState extends State<VerificationScreen> {
           width: isActive ? 2 : 1,
         ),
         borderRadius: BorderRadius.circular(12),
-        color: isFilled ? Colors.grey.shade50 : Colors.white,
+        color: Colors.white,
       ),
-      child: Center(
-        child: Text(
-          _otpDigits[index],
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      child: TextField(
+        textAlign: TextAlign.center,
+        keyboardType: TextInputType.number,
+        maxLength: 1,
+        showCursor: true,
+        decoration: const InputDecoration(
+          counterText: '',
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(vertical: 16),
         ),
-      ),
-    );
-  }
-
-
-  // Build a single keypad button
-  Widget _buildKeypadButton(String digit, String letters) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => _onKeypadDigitPressed(digit),
-        child: Container(
-          height: 64,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade300),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                digit,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              if (letters.isNotEmpty)
-                Text(
-                  letters,
-                  style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  // Build the backspace button
-  Widget _buildBackspaceButton() {
-    return Expanded(
-      child: GestureDetector(
-        onTap: _onDeletePressed,
-        child: Container(
-          height: 64,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade300),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: const Center(child: Icon(Icons.backspace_outlined)),
-        ),
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            setState(() {
+              _otpDigits[index] = value;
+              // Move to next field if available
+              if (index < _otpDigits.length - 1) {
+                _currentDigitIndex = index + 1;
+                // Focus next field
+                FocusScope.of(context).nextFocus();
+              } else {
+                // Close keyboard on last digit
+                FocusScope.of(context).unfocus();
+              }
+            });
+          } else {
+            setState(() {
+              _otpDigits[index] = '';
+            });
+          }
+        },
+        onTap: () {
+          setState(() {
+            _currentDigitIndex = index;
+          });
+        },
+        controller: _controllers[index],
       ),
     );
   }

@@ -26,11 +26,12 @@ class PlanCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AspectRatio(
-        aspectRatio: 0.9, 
+        aspectRatio: 0.9,
         child: Container(
+          width: 160,
           decoration: BoxDecoration(
             color: AppTheme.white,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isSelected ? AppTheme.primaryPurple : AppTheme.outline,
               width: isSelected ? 2 : 1,
@@ -51,7 +52,7 @@ class PlanCard extends StatelessWidget {
                   horizontal: 24,
                   vertical: 8,
                 ),
-                transform: Matrix4.translationValues(0, -15, 0),
+                transform: Matrix4.translationValues(0, -20, 0),
                 decoration: BoxDecoration(
                   color: AppTheme.primaryPurpleButton,
                   borderRadius: BorderRadius.circular(20),
@@ -68,20 +69,16 @@ class PlanCard extends StatelessWidget {
               ),
 
               // Plan details
-            Expanded(
+              Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
-                    vertical: 12,
+                    vertical: 4,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        duration,
-                        style: AppTheme.subtitleStyle,
-
-                      ),
+                      Text(duration, style: AppTheme.subtitleStyle),
                       const SizedBox(height: 12),
                       RichText(
                         text: TextSpan(
@@ -97,19 +94,19 @@ class PlanCard extends StatelessWidget {
                               ),
                             ),
                             if (price.contains('+')) ...[
-                            TextSpan(
-                              text: ' + ',
-                              style: AppTheme.subtitleStyle.copyWith(
-                                fontSize: 8,
-                                fontWeight: FontWeight.w600,
+                              TextSpan(
+                                text: ' + ',
+                                style: AppTheme.subtitleStyle.copyWith(
+                                  fontSize: 8,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
                               TextSpan(
                                 text: price.split(' + ')[1], // "Tax"
-                                 style: AppTheme.subtitleStyle.copyWith(
-                                fontSize: 8,
-                                fontWeight: FontWeight.w600,
-                              ),
+                                style: AppTheme.subtitleStyle.copyWith(
+                                  fontSize: 8,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:korean_master/themes/app_theme.dart';
 import 'package:korean_master/widgets/premium/plan_card.dart';
 import 'package:korean_master/widgets/common/custom_button.dart';
@@ -21,33 +22,18 @@ class _PremiumScreenState extends State<PremiumScreen> {
 
   Widget _buildStatusIcon(bool isAvailable, {bool isLimited = false}) {
     if (!isAvailable) {
-      return Container(
+      return SvgPicture.asset(
+        'assets/images/remove.svg',
         width: 20,
         height: 20,
-        decoration: const BoxDecoration(
-          color: AppTheme.mediumGray,
-          shape: BoxShape.circle,
-        ),
-        child: const Icon(Icons.remove, color: AppTheme.white, size: 12),
       );
     }
 
     if (isLimited) {
-      return const Text(
-        'Limited',
-        style: AppTheme.bodyTextStyle,
-      );
+      return Text('Limited', style: AppTheme.bodyTextStyle);
     }
 
-    return Container(
-      width: 20,
-      height: 20,
-      decoration: const BoxDecoration(
-        color: AppTheme.success,
-        shape: BoxShape.circle,
-      ),
-      child: const Icon(Icons.check, color: AppTheme.white, size: 12),
-    );
+    return SvgPicture.asset('assets/images/check.svg', width: 20, height: 20);
   }
 
   Widget _buildFeatureRow(
@@ -57,7 +43,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
     bool isLimited = false,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       child: Row(
         children: [
           Expanded(
@@ -95,26 +81,25 @@ class _PremiumScreenState extends State<PremiumScreen> {
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
             horizontal: screenWidth * 0.06,
-            vertical: screenHeight * 0.03,
+            vertical: screenHeight * 0.04,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title
-              const Text(
-                'KoreanMaster Premium',
-                style: AppTheme.titleMediumStyle,
-              ),
+              Text('KoreanMaster Premium', style: AppTheme.titleMediumStyle),
 
-              SizedBox(height: 10),
+              SizedBox(height: 8),
 
               // Subtitle
               Text(
                 'Basic is just the beginning. Premium unlocks unlimited learning and the full experience.',
-                style: AppTheme.subtitleStyle.copyWith(fontWeight: FontWeight.w300),
+                style: AppTheme.subtitleStyle.copyWith(
+                  fontWeight: FontWeight.w300,
+                ),
               ),
 
-              SizedBox(height: 50),
+              SizedBox(height: 56),
 
               // Plan Cards
               Row(
@@ -145,17 +130,20 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 ],
               ),
 
-              SizedBox(height: screenHeight * 0.05),
+              SizedBox(height: screenHeight * 0.04),
 
               // Features Table Header
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 12,
+                ),
                 decoration: const BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(color: AppTheme.outline, width: 1),
+                    bottom: BorderSide(color: Color(0xFFA19898), width: 1),
                   ),
                 ),
-                child: const Row(
+                child: Row(
                   children: [
                     Expanded(
                       flex: 3,
@@ -185,7 +173,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
               Container(
                 decoration: BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(color: AppTheme.outline, width: 1),
+                    bottom: BorderSide(color: Color(0xFFDDDDDD), width: 1),
                   ),
                 ),
                 child: _buildFeatureRow(
@@ -237,7 +225,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 child: _buildFeatureRow('Backup & Sync', false, true),
               ),
 
-              SizedBox(height: screenHeight * 0.06),
+              SizedBox(height: screenHeight * 0.05),
 
               // Continue Button
               CustomButton(text: 'Continue', onPressed: () {}),
@@ -245,7 +233,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
               SizedBox(height: screenHeight * 0.02),
 
               // Cancel text
-              const Center(
+           Center(
                 child: Text(
                   'You can cancel your subscription anytime',
                   style: AppTheme.footerText,

@@ -63,7 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 SizedBox(height: screenHeight * 0.02),
 
-                const Text(
+               Text(
                   'Register for\nDaily Access',
                   style: AppTheme.registerLoginTitle,
                 ),
@@ -86,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       );
                           },
-                          child: const Text(
+                          child:  Text(
                             'More details>',
                             style: AppTheme.linkText,
                             
@@ -100,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(height: screenHeight * 0.05),
 
                 // Name Field
-                const Text('Name', style: AppTheme.inputLabel),
+             Text('Name', style: AppTheme.inputLabel),
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: _nameController,
@@ -123,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(height: screenHeight * 0.025),
 
                
-                const Text('Phone number', style: AppTheme.inputLabel),
+        Text('Phone number', style: AppTheme.inputLabel),
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: _phoneController,
@@ -170,7 +170,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
 
-                SizedBox(height: 15),
+          
+              SizedBox(height: screenHeight * 0.28),
 
                 // Footer
                 Center(
@@ -179,11 +180,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     text: TextSpan(
                       style: AppTheme.footerText,
                       children: [
-                        const TextSpan(text: 'Already purchased Lifetime?? '),
+                        TextSpan(text: 'Already purchased Lifetime?? '),
                         WidgetSpan(
                           child: GestureDetector(
                             onTap: _onLogin,
-                            child: const Text(
+                            child:  Text(
                               'Login',
                               style: AppTheme.loginLinkText,
                             ),
