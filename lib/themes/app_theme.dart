@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 class AppTheme {
   // Color constants - Updated to match the image exactly
   static const Color primaryPurple = Color(
+   0xFF663E98,
+  ); // Main purple from image
+  static const Color primaryPurpleButton = Color(
     0xFF7F4BF7,
   ); // Main purple from image
+
   static const Color lightPurple = Color(
     0xFFB794F6,
   ); // Light purple for MASTER text
@@ -27,20 +31,19 @@ class AppTheme {
   static const Color warning = Color(0xFFF59E0B);
   static const Color error = Color(0xFFEF4444);
 
-  // Register screen specific colors
-  static const Color inputBackground = Color(0xFFF9FAFB);
-  static const Color inputBorder = Color(0xFFE5E7EB);
-  static const Color textSecondary = Color(0xFF6B7280);
-  static const Color linkColor = Color(0xFF7C3AED);
-
-  // Premium screen specific colors
-  static const Color premiumCardBorder = Color(0xFF7F4BF7);
-  static const Color basicCardBorder = Color(0xFFE5E7EB);
-  static const Color checkGreen = Color(0xFF22C55E);
-  static const Color disabledGray = Color(0xFF9CA3AF);
-  static const Color tableHeaderGray = Color(0xFFF3F4F6);
-
-  // Gradient definitions
+  // Semantic colors - Reusable across all screens
+  static const Color surface = Color(
+    0xFFF9FAFB,
+  ); // Input backgrounds, card surfaces
+  static const Color outline = Color(0xFFE5E7EB); // Borders, dividers
+  static const Color onSurfaceVariant = Color(
+    0xFF6B7280,
+  ); // Secondary text, hints
+  static const Color primary = Color(0xFF7C3AED); // Links, accents
+  static const Color onSurface = Color(0xFF263238); // Primary text, prices
+  static const Color surfaceVariant = Color(
+    0xFF6B7280,
+  ); // Subtitles, descriptions  // Gradient definitions
   static const LinearGradient primaryGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -144,7 +147,7 @@ class AppTheme {
   static const TextStyle linkText = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: linkColor,
+    color: primary,
     decoration: TextDecoration.none,
   );
 
@@ -167,7 +170,7 @@ class AppTheme {
     fontFamily: 'Inter',
     fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: textSecondary,
+    color: onSurfaceVariant,
     letterSpacing: 0,
   );
 
@@ -184,7 +187,7 @@ class AppTheme {
     fontFamily: 'Inter',
     fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: textSecondary,
+    color: onSurfaceVariant,
     letterSpacing: 0,
   );
 
@@ -196,64 +199,93 @@ class AppTheme {
     letterSpacing: 0,
   );
 
-  // Premium screen text styles
-  static const TextStyle premiumTitle = TextStyle(
+  // Reusable text styles for any screen
+  static const TextStyle titleLargeStyle = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.w700,
     color: primaryPurple,
     height: 1.2,
   );
-
-  static const TextStyle premiumSubtitle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    color: textSecondary,
-    height: 1.5,
+  static const TextStyle titleMediumStyle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 26,
+    fontWeight: FontWeight.w600,  // SemiBold
+    color: Color(0xFF663E98),
+    height: 1.3,      // 130% line height
+    letterSpacing: -0.01,  // -1% letter spacing
   );
 
-  static const TextStyle planTitle = TextStyle(
-    fontSize: 16,
+  static const TextStyle subtitleStyle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    color: Color(0xFF263238),
+    height: 1.25,
+    letterSpacing: 0,
+  );
+
+  static const TextStyle cardTitleStyle = TextStyle(
+    fontSize: 18,
     fontWeight: FontWeight.w600,
     color: white,
   );
 
-  static const TextStyle planDuration = TextStyle(
+  static const TextStyle priceStyle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 18,
+    fontWeight: FontWeight.w600,  // SemiBold
+    color: onSurface,
+    height: 1.25,     // 125% line height
+    letterSpacing: 0, // 0% letter spacing
+  );
+
+  static const TextStyle durationStyle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: FontWeight.w500,  // Medium
+    fontStyle: FontStyle.normal,
+    color: onSurface,
+    height: 1.25,     // 125% line height
+    letterSpacing: 0, // 0% letter spacing
+  );
+
+  static const TextStyle captionStyle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: FontWeight.w500,  // Medium
+    fontStyle: FontStyle.normal,
+    color: Color(0xFF8696BB),
+    height: 1.25,     // 125% line height
+    letterSpacing: 0, // 0% letter spacing
+  );
+
+  static const TextStyle bodyTextStyle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: FontWeight.w500, // Medium weight
+    fontStyle: FontStyle.normal,
+    color: Color(0xFF6E6E6E),
+    height: 1.25, // 125% line height
+    letterSpacing: 0,
+  );
+
+  static const TextStyle statusTextStyle = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: onSurfaceVariant,
+  );
+
+  static const TextStyle buttonTextStyle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
-    color: black,
-    height: 1.3,
+    color: white,
   );
 
-  static const TextStyle planPrice = TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.w700,
-    color: black,
-    height: 1.2,
-  );
-
-  static const TextStyle planAccess = TextStyle(
-    fontSize: 16,
+  static const TextStyle smallTextStyle = TextStyle(
+    fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: textSecondary,
-  );
-
-  static const TextStyle featureLabel = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-    color: black,
-  );
-
-  static const TextStyle tableHeader = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-    color: black,
-  );
-
-  static const TextStyle cancelText = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    color: textSecondary,
-    height: 1.5,
+    color: onSurfaceVariant,
   );
 
   // Original text styles for other screens
@@ -339,7 +371,7 @@ class AppTheme {
   );
 
   static final ButtonStyle registerButtonStyle = ElevatedButton.styleFrom(
-    backgroundColor: primaryPurple,
+    backgroundColor: primaryPurpleButton,
     foregroundColor: white,
     elevation: 0,
     minimumSize: const Size(double.infinity, 56),
@@ -349,19 +381,19 @@ class AppTheme {
 
   static final ButtonStyle secondaryButtonStyle = ElevatedButton.styleFrom(
     backgroundColor: white,
-    foregroundColor: primaryPurple,
+    foregroundColor: primaryPurpleButton,
     elevation: 2,
     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
-      side: const BorderSide(color: primaryPurple, width: 1),
+      side: const BorderSide(color: primaryPurpleButton, width: 1),
     ),
     textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
   );
 
   static final ButtonStyle outlinedButtonStyle = OutlinedButton.styleFrom(
-    foregroundColor: primaryPurple,
-    side: const BorderSide(color: primaryPurple, width: 2),
+    foregroundColor: primaryPurpleButton,
+    side: const BorderSide(color: primaryPurpleButton, width: 2),
     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -420,19 +452,48 @@ class AppTheme {
         ),
       );
 
-  // Input decoration helper method
+  // Reusable input decoration
   static InputDecoration inputDecoration({
-    String? labelText,
     String? hintText,
-    Widget? prefixIcon,
     Widget? suffixIcon,
+    bool isOutlined = false,
   }) {
+    if (isOutlined) {
+      return InputDecoration(
+        filled: true,
+        fillColor: surface,
+        hintText: hintText,
+        hintStyle: inputHint,
+        suffixIcon: suffixIcon,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: outline, width: 1),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: outline, width: 1),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: primaryPurple, width: 2),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: error, width: 2),
+        ),
+        errorStyle: inputError,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
+      );
+    }
+
     return InputDecoration(
       filled: true,
       fillColor: lightGray,
-      labelText: labelText,
       hintText: hintText,
-      prefixIcon: prefixIcon,
+      hintStyle: inputHint,
       suffixIcon: suffixIcon,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -451,60 +512,6 @@ class AppTheme {
         borderSide: const BorderSide(color: error, width: 2),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-    );
-  }
-
-  // Register screen specific input decoration
-  static InputDecoration registerInputDecoration({
-    String? hintText,
-    Widget? suffixIcon,
-  }) {
-    return InputDecoration(
-      filled: true,
-      fillColor: inputBackground,
-      hintText: hintText,
-      hintStyle: inputHint,
-      suffixIcon: suffixIcon,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: inputBorder, width: 1),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: inputBorder, width: 1),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: primaryPurple, width: 2),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: error, width: 2),
-      ),
-      errorStyle: inputError,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-    );
-  }
-
-  // Reusable method for creating consistent text field decoration
-  static InputDecoration createInputDecoration({
-    String? hintText,
-    String? labelText,
-    Widget? suffixIcon,
-    Widget? prefixIcon,
-    bool isRegisterStyle = false,
-  }) {
-    if (isRegisterStyle) {
-      return registerInputDecoration(
-        hintText: hintText,
-        suffixIcon: suffixIcon,
-      );
-    }
-    return inputDecoration(
-      labelText: labelText,
-      hintText: hintText,
-      prefixIcon: prefixIcon,
-      suffixIcon: suffixIcon,
     );
   }
 

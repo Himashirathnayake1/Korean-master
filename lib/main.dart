@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:korean_master/routes/app_routes.dart';
 import 'package:korean_master/screens/splash_screen.dart';
+import 'package:korean_master/screens/register_screen.dart';
+import 'package:korean_master/screens/premium_screen.dart';
 import 'package:korean_master/themes/app_theme.dart';
 
 void main() {
@@ -16,7 +19,14 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
-      home: const SplashScreen(),
+      routes: AppRoutes.routes,
+      initialRoute: AppRoutes.splashScreen,
+      //home: const SplashScreen(),
+      // routes: {
+      //   '/splash': (context) => const SplashScreen(),
+      //   '/register': (context) => const RegisterScreen(),
+      //   '/premium': (context) => const PremiumScreen(),
+      // },
       debugShowCheckedModeBanner: false,
     );
   }

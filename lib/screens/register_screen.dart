@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:korean_master/screens/premium_screen.dart';
 import 'package:korean_master/themes/app_theme.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -104,9 +105,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextFormField(
                   controller: _nameController,
                   style: AppTheme.inputText,
-                  decoration: AppTheme.createInputDecoration(
+                  decoration: AppTheme.inputDecoration(
                     hintText: 'Your name',
-                    isRegisterStyle: true,
+                    isOutlined: true,
                   ),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -129,15 +130,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   keyboardType: TextInputType.phone,
                   obscureText: !_isPhoneVisible,
                   style: AppTheme.inputText,
-                  decoration: AppTheme.createInputDecoration(
+                  decoration: AppTheme.inputDecoration(
                     hintText: '07X XXX XXXX',
-                    isRegisterStyle: true,
+                    isOutlined: true,
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPhoneVisible
                             ? Icons.visibility_outlined
                             : Icons.visibility_off_outlined,
-                        color: AppTheme.textSecondary,
+                        color: AppTheme.onSurfaceVariant,
                         size: 20,
                       ),
                       onPressed: _togglePhoneVisibility,
@@ -162,7 +163,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: _onRegister,
+                    onPressed: () {
+                      _onRegister();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const PremiumScreen(),
+                        ),
+                      );
+                    },
                     style: AppTheme.registerButtonStyle,
                     child: const Text('Register', style: AppTheme.buttonText),
                   ),
