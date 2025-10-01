@@ -35,22 +35,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
       backgroundColor:
-          AppTheme.splashBackground, // Light gray background like the image
+          AppTheme.splashBackground, 
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.1, // 10% padding on sides
-            vertical: screenHeight * 0.05, // 5% padding top/bottom
+            horizontal: screenWidth * 0.1, 
+            vertical: screenHeight * 0.05, 
           ),
           child: Column(
             children: [
-              Spacer(flex: 2), // Top spacer to center content vertically
-              // App Logo Container - matching the white card in image
+              Spacer(flex: 2), // Top spacer
               Center(
                 child: Container(
                   width: 160,
                   height: 160,
-                  decoration: AppTheme.splashLogoDecoration,
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Image.asset(
@@ -63,21 +61,17 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
 
-              // Spacer between logo and title
-              SizedBox(height: 37), // 8% of screen height
-              // Korean Master Title - Using the single SVG file
               SvgPicture.asset(
                 'assets/images/Korean Master.svg',
                 width:
                     screenWidth *
-                    0.7, // 70% of screen width for better visibility
-                fit: BoxFit.contain,
+                    0.5, 
               ),
 
               // Bottom spacer
-              const Spacer(flex: 3),
+              SizedBox(height: 230),
 
-              // Powered by section at bottom
+       
               Column(
                 children: [
                   Text(
@@ -92,7 +86,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 ],
               ),
 
-              // Bottom padding
               SizedBox(height: screenHeight * 0.03),
             ],
           ),

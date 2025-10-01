@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:korean_master/screens/premium_screen.dart';
+import 'package:korean_master/screens/verification_screen.dart';
 import 'package:korean_master/themes/app_theme.dart';
+import 'package:korean_master/widgets/common/custom_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -30,19 +32,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _onRegister() {
     if (_formKey.currentState!.validate()) {
-      // Handle registration logic here
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Registration successful!'),
-          backgroundColor: AppTheme.success,
-        ),
+      final route = MaterialPageRoute(
+        builder: (context) => VerificationScreen(phoneNumber: _phoneController.text),
       );
+      Navigator.push(context, route);
     }
   }
 
   void _onLogin() {
-    // Navigate to login screen
-    Navigator.of(context).pop(); // Or navigate to login screen
+    Navigator.of(context).pop(); 
   }
 
   @override
@@ -55,8 +53,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.06, // 6% padding on sides
-            vertical: screenHeight * 0.04, // 4% padding top/bottom
+            horizontal: screenWidth * 0.06,
+            vertical: screenHeight * 0.04, 
           ),
           child: Form(
             key: _formKey,
@@ -65,18 +63,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 SizedBox(height: screenHeight * 0.02),
 
-                // Title Section
                 const Text(
                   'Register for\nDaily Access',
-                  style: AppTheme.registerTitle,
+                  style: AppTheme.registerLoginTitle,
                 ),
 
                 SizedBox(height: screenHeight * 0.015),
 
-                // Subtitle with More details link
                 RichText(
                   text: TextSpan(
-                    style: AppTheme.registerSubtitle,
+                    style: AppTheme.subtitle,
                     children: [
                       const TextSpan(
                         text:
@@ -84,12 +80,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       WidgetSpan(
                         child: GestureDetector(
-                          onTap: () {
-                            // Handle "More details>" tap
+                          onTap: () {  Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const PremiumScreen(),
+                        ),
+                      );
                           },
                           child: const Text(
                             'More details>',
                             style: AppTheme.linkText,
+                            
                           ),
                         ),
                       ),
@@ -122,7 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 SizedBox(height: screenHeight * 0.025),
 
-                // Phone Number Field
+               
                 const Text('Phone number', style: AppTheme.inputLabel),
                 const SizedBox(height: 8),
                 TextFormField(
@@ -148,7 +148,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     if (value == null || value.trim().isEmpty) {
                       return 'Please enter your phone number';
                     }
-                    // Basic Sri Lankan phone number validation
                     final phoneRegex = RegExp(r'^0[0-9]{9}$');
                     if (!phoneRegex.hasMatch(value.replaceAll(' ', ''))) {
                       return 'Please enter a valid phone number';
@@ -162,22 +161,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 // Register Button
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
+                  child: CustomButton(
                     onPressed: () {
                       _onRegister();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const PremiumScreen(),
-                        ),
-                      );
+                     
                     },
-                    style: AppTheme.registerButtonStyle,
-                    child: const Text('Register', style: AppTheme.buttonText),
+                    text: 'Register',
                   ),
                 ),
 
-                // Spacer to push footer to bottom
-                SizedBox(height: screenHeight * 0.27),
+                SizedBox(height: 15),
 
                 // Footer
                 Center(

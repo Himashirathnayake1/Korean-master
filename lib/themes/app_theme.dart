@@ -99,22 +99,10 @@ class AppTheme {
     letterSpacing: 0, // 0% letter spacing
   );
 
-  // Logo container decoration for splash screen
-  static BoxDecoration splashLogoDecoration = BoxDecoration(
-    color: const Color.fromRGBO(255, 255, 255, 1),
-    borderRadius: BorderRadius.circular(24),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.black.withOpacity(0.1),
-        blurRadius: 20,
-        offset: const Offset(0, 8),
-        spreadRadius: 0,
-      ),
-    ],
-  );
+
 
   // Register screen text styles
-  static const TextStyle registerTitle = TextStyle(
+  static const TextStyle registerLoginTitle = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 30,
     fontWeight: FontWeight.w700,
@@ -123,7 +111,7 @@ class AppTheme {
     letterSpacing: -0.01, // -1% letter spacing
   );
 
-  static const TextStyle registerSubtitle = TextStyle(
+  static const TextStyle subtitle = TextStyle( //register,premium subtitle
     fontFamily: 'Poppins',
     fontSize: 14,
     fontWeight: FontWeight.w300, // 300 is "Light" weight
@@ -145,9 +133,13 @@ class AppTheme {
 
   // Register screen interactive text styles
   static const TextStyle linkText = TextStyle(
+    fontFamily: 'Poppins',
     fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: primary,
+    fontWeight: FontWeight.w500, // Medium weight
+    fontStyle: FontStyle.normal,
+    color: Color(0xFF7F4BF7),
+    height: 1.25, // 125% line height
+    letterSpacing: 0,
     decoration: TextDecoration.none,
   );
 
@@ -155,7 +147,6 @@ class AppTheme {
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: black,
-    decoration: TextDecoration.underline,
   );
 
   static const TextStyle buttonText = TextStyle(
@@ -179,7 +170,7 @@ class AppTheme {
     fontFamily: 'Inter',
     fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: black,
+    color: Color(0xff000080),
     letterSpacing: 0,
   );
 
