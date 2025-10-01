@@ -21,6 +21,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
   );
   final List<FocusNode> _focusNodes = List.generate(5, (index) => FocusNode());
   int _currentDigitIndex = 0;
+  bool _showError = false;
+
+
+  final List<String> _validOtp = ['1', '2', '3', '4', '5'];
 
   @override
   void initState() {
@@ -88,9 +92,27 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
     // Check if all digits are filled
     if (!enteredOtp.contains('')) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Verification successful!')));
+      // Verify against valid OTP
+      bool isCorrect = true;
+      for (int i = 0; i < _validOtp.length; i++) {
+        if (enteredOtp[i] != _validOtp[i]) {
+          isCorrect = false;
+          break;
+        }
+      }
+
+      if (isCorrect) {
+        setState(() {
+          _showError = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Verification successful!')),
+        );
+      } else {
+        setState(() {
+          _showError = true;
+        });
+      }
     } else {
       ScaffoldMessenger.of(
         context,
@@ -100,6 +122,19 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
   // Resend code logic
   void _resendCode() {
+    // Reset error state
+    setState(() {
+      _showError = false;
+      // Clear all fields
+      for (int i = 0; i < _controllers.length; i++) {
+        _controllers[i].clear();
+        _otpDigits[i] = '';
+      }
+      // Focus on first field
+      _currentDigitIndex = 0;
+      _focusNodes[0].requestFocus();
+    });
+
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(const SnackBar(content: Text('Verification code resent')));
@@ -170,7 +205,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 children: List.generate(5, (index) => _buildOtpDigitBox(index)),
               ),
 
-              const SizedBox(height: 40),
+              // Error message
+              if (_showError)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Text(
+                    'Wrong code, please try again',
+                    style: AppTheme.inputError,
+                  ),
+                ),
+
+              SizedBox(height: _showError ? 20 : 40),
 
               // "I didn't receive a code" and Resend
               Row(
@@ -216,14 +261,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
       width: 60,
       height: 60,
       decoration: BoxDecoration(
-        // Simplify border color logic: purple when active, grey otherwise
         border: Border.all(
+          // Show red border when there's an error, otherwise regular styling
           color:
-              isActive
+              _showError
+                  ? Colors.red[400]!
+                  : isActive
                   ? AppTheme
                       .primaryPurple // Purple when active/selected
                   : Colors.grey.shade300, // Grey when inactive
-          width: isActive ? 1: 1, // Thicker border when active
+          width: isActive ? 1.0 : 1.0, // Thicker border when active
         ),
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
@@ -254,6 +301,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
           // Update state
           setState(() {
             _otpDigits[index] = value;
+
+            // Reset error state when user types
+            if (_showError) {
+              _showError = false;
+            }
 
             // When a digit is entered (exactly 1 character)
             if (value.length == 1) {

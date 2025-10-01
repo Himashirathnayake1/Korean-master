@@ -36,11 +36,12 @@ class PlanCard extends StatelessWidget {
               color: isSelected ? AppTheme.primaryPurple : AppTheme.outline,
               width: isSelected ? 2 : 1,
             ),
+            //shadow for card
             boxShadow: [
               BoxShadow(
-                color: AppTheme.outline.withOpacity(0.1),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
+                color: const Color(0x14000000),
+                blurRadius: 40,
+                offset: const Offset(0, 4),
               ),
             ],
           ),
@@ -79,7 +80,9 @@ class PlanCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(duration, style: AppTheme.subtitleStyle),
-                      const SizedBox(height: 12),
+                      const SizedBox(
+                        height: 4,
+                      ), // Reduced spacing to match design
                       RichText(
                         text: TextSpan(
                           children: [
@@ -89,7 +92,7 @@ class PlanCard extends StatelessWidget {
                                       ? price.split(' + ')[0] // "LKR 8"
                                       : price, // Full price for premium
                               style: AppTheme.subtitleStyle.copyWith(
-                                fontSize: 18,
+                                fontSize: 20, // Slightly larger to match design
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -112,7 +115,9 @@ class PlanCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(
+                        height: 6,
+                      ), // Reduced spacing to match design
                       Text(
                         access,
                         style: const TextStyle(

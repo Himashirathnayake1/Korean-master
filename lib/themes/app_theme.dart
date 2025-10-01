@@ -19,7 +19,7 @@ class AppTheme {
   static const Color black = Color(0xFF000000);
   static const Color success = Color(0xFF10B981);
   static const Color warning = Color(0xFFF59E0B);
-  static const Color error = Color(0xFFEF4444);
+  static const Color error = Color(0xFFF54135);
 
   static const Color surface = Color(
     0xFFF9FAFB,
@@ -51,8 +51,8 @@ class AppTheme {
     colors: [white, lightGray],
   );
 
-  static TextStyle splashPoweredByText(double screenWidth) => TextStyle(
-    fontFamily: 'Gilroy',
+  static TextStyle splashPoweredByText(double screenWidth) => GoogleFonts.poppins(
+    
     fontSize: 10.58,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -102,10 +102,10 @@ class AppTheme {
   // Register screen interactive text styles
   static TextStyle linkText = GoogleFonts.poppins(
     fontSize: 14,
-    fontWeight: FontWeight.w500, // Medium weight
+    fontWeight: FontWeight.w500, // Medium
     fontStyle: FontStyle.normal,
     color: Color(0xFF7F4BF7),
-    height: 1.25, // 125% line height
+    height: 1.25,
     letterSpacing: 0,
     decoration: TextDecoration.none,
   );
@@ -149,11 +149,13 @@ class AppTheme {
     letterSpacing: 0,
   );
 
-  static  TextStyle inputError = GoogleFonts.inter(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
+  static TextStyle inputError = GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w400, // Regular
+    fontStyle: FontStyle.normal,
     color: error,
-    letterSpacing: 0,
+    height: 1.25, // 125% line height
+    letterSpacing: 0, // 0% letter spacing
   );
 
   // Reusable text styles for any screen
