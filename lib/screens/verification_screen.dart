@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // For TextInputFormatter
 import 'package:korean_master/themes/app_theme.dart';
 import 'package:korean_master/widgets/common/custom_button.dart';
 
@@ -18,12 +19,64 @@ class _VerificationScreenState extends State<VerificationScreen> {
     5,
     (index) => TextEditingController(),
   );
+  final List<FocusNode> _focusNodes = List.generate(5, (index) => FocusNode());
   int _currentDigitIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Request focus on first field when screen loads
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_focusNodes.isNotEmpty) {
+        _focusNodes[0].requestFocus();
+      }
+    });
+
+    // Set up listeners for each text field
+    for (int i = 0; i < _controllers.length; i++) {
+      final int index = i;
+
+      // Add focus listeners to detect backspace on empty fields
+      _focusNodes[index].addListener(() {
+        // When this field gets focus, update the current index
+        if (_focusNodes[index].hasFocus) {
+          setState(() {
+            _currentDigitIndex = index;
+          });
+        }
+      });
+
+      // Track the last value to detect backspace
+      String lastValue = _controllers[index].text;
+
+      _controllers[index].addListener(() {
+        final String currentValue = _controllers[index].text;
+
+        // If text was deleted and field is now empty (backspace was pressed)
+        if (lastValue.isNotEmpty && currentValue.isEmpty) {
+          if (index > 0) {
+            // Move to previous field
+            setState(() {
+              _currentDigitIndex = index - 1;
+            });
+            _focusNodes[index - 1].requestFocus();
+          }
+        }
+
+        // Update last value for next comparison
+        lastValue = currentValue;
+      });
+    }
+  }
 
   @override
   void dispose() {
     for (var controller in _controllers) {
       controller.dispose();
+    }
+    for (var focusNode in _focusNodes) {
+      focusNode.dispose();
     }
     super.dispose();
   }
@@ -80,7 +133,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               const SizedBox(height: 40),
 
               // Title
-           Text(
+              Text(
                 'Verify your phone number',
                 style: AppTheme.registerLoginTitle,
                 textAlign: TextAlign.center,
@@ -100,7 +153,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     ),
                     TextSpan(
                       text: widget.phoneNumber,
-                      style: AppTheme.inputLabel.copyWith(color: Colors.black,fontWeight: FontWeight.w600,),
+                      style: AppTheme.inputLabel.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ],
                 ),
@@ -120,10 +176,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                 Text(
-                    'I didn\'t receive a code',
-                    style: AppTheme.inputLabel,
-                  ),
+                  Text('I didn\'t receive a code', style: AppTheme.inputLabel),
                   const SizedBox(width: 8),
                   GestureDetector(
                     onTap: _resendCode,
@@ -158,20 +211,19 @@ class _VerificationScreenState extends State<VerificationScreen> {
   // Build a single OTP digit box
   Widget _buildOtpDigitBox(int index) {
     final bool isActive = index == _currentDigitIndex;
-    final bool isFilled = _otpDigits[index].isNotEmpty;
 
     return Container(
       width: 60,
       height: 60,
       decoration: BoxDecoration(
+        // Simplify border color logic: purple when active, grey otherwise
         border: Border.all(
           color:
-              isFilled
-                  ? Colors.grey.shade400
-                  : isActive
-                  ? AppTheme.primaryPurple
-                  : Colors.grey.shade300,
-          width: isActive ? 2 : 1,
+              isActive
+                  ? AppTheme
+                      .primaryPurple // Purple when active/selected
+                  : Colors.grey.shade300, // Grey when inactive
+          width: isActive ? 1: 1, // Thicker border when active
         ),
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
@@ -179,33 +231,41 @@ class _VerificationScreenState extends State<VerificationScreen> {
       child: TextField(
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
+        textInputAction:
+            index < _otpDigits.length - 1
+                ? TextInputAction.next
+                : TextInputAction.done,
         maxLength: 1,
+        autofocus: index == 0,
         showCursor: true,
+        focusNode: _focusNodes[index],
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          LengthLimitingTextInputFormatter(1),
+        ],
         decoration: const InputDecoration(
           counterText: '',
           border: InputBorder.none,
           contentPadding: EdgeInsets.symmetric(vertical: 16),
         ),
         style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        enableInteractiveSelection: false, // Disable text selection
         onChanged: (value) {
-          if (value.isNotEmpty) {
-            setState(() {
-              _otpDigits[index] = value;
-              // Move to next field if available
+          // Update state
+          setState(() {
+            _otpDigits[index] = value;
+
+            // When a digit is entered (exactly 1 character)
+            if (value.length == 1) {
+              // Move to next field if not the last one
               if (index < _otpDigits.length - 1) {
                 _currentDigitIndex = index + 1;
-                // Focus next field
-                FocusScope.of(context).nextFocus();
-              } else {
-                // Close keyboard on last digit
-                FocusScope.of(context).unfocus();
+                _focusNodes[index + 1].requestFocus();
               }
-            });
-          } else {
-            setState(() {
-              _otpDigits[index] = '';
-            });
-          }
+              // We removed the code that hides keyboard on last field
+              // so the keyboard will remain visible
+            }
+          });
         },
         onTap: () {
           setState(() {
