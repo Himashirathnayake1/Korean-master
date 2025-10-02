@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:korean_master/screens/register_screen.dart';
 import 'package:korean_master/themes/app_theme.dart';
 import 'package:korean_master/widgets/premium/plan_card.dart';
 import 'package:korean_master/widgets/common/custom_button.dart';
@@ -76,12 +77,11 @@ class _PremiumScreenState extends State<PremiumScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: AppTheme.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
             horizontal: screenWidth * 0.06,
-            vertical: screenHeight * 0.04,
+            vertical: screenHeight * 0.03,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +89,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
               // Title
               Text('KoreanMaster Premium', style: AppTheme.titleMediumStyle),
 
-              SizedBox(height: 8),
+              SizedBox(height: 6),
 
               // Subtitle
               Text(
@@ -99,38 +99,28 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 ),
               ),
 
-              SizedBox(height: 56),
+              SizedBox(height: 50),
 
               // Plan Cards
               Row(
                 children: [
                   Expanded(
-                    child: PlanCard(
-                      title: 'Basic',
-                      duration: 'Daily',
-                      price: 'LKR 8 + Tax',
-                      access: 'Limited access',
+                    child: BasicPlanCard(
                       isSelected: isBasicSelected,
-                      isPremium: false,
                       onTap: () => _selectPlan(true),
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: PlanCard(
-                      title: 'Premium',
-                      duration: 'Life time',
-                      price: 'LKR 4500',
-                      access: 'Unlimited access',
+                    child: PremiumPlanCard(
                       isSelected: !isBasicSelected,
-                      isPremium: true,
                       onTap: () => _selectPlan(false),
                     ),
                   ),
                 ],
               ),
 
-              SizedBox(height: screenHeight * 0.04),
+              SizedBox(height: screenHeight * 0.03),
 
               // Features Table Header
               Container(
@@ -225,15 +215,24 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 child: _buildFeatureRow('Backup & Sync', false, true),
               ),
 
-              SizedBox(height: screenHeight * 0.05),
+              SizedBox(height: screenHeight * 0.04),
 
               // Continue Button
-              CustomButton(text: 'Continue', onPressed: () {}),
+              CustomButton(
+                text: 'Continue',
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterScreen(),
+                    ),
+                  );
+                },
+              ),
 
               SizedBox(height: screenHeight * 0.02),
 
               // Cancel text
-           Center(
+              Center(
                 child: Text(
                   'You can cancel your subscription anytime',
                   style: AppTheme.footerText,

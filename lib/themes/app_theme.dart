@@ -32,7 +32,7 @@ class AppTheme {
   static const Color onSurface = Color(0xFF263238); // Primary text, prices
   static const Color surfaceVariant = Color(
     0xFF6B7280,
-  ); // Subtitles, descriptions  // Gradient definitions
+  ); // Subtitles, descriptions
   static const LinearGradient primaryGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -51,15 +51,15 @@ class AppTheme {
     colors: [white, lightGray],
   );
 
-  static TextStyle splashPoweredByText(double screenWidth) => GoogleFonts.poppins(
-    
-    fontSize: 10.58,
-    fontWeight: FontWeight.w400,
-    fontStyle: FontStyle.normal,
-    color: mediumGray,
-    height: 1.0,
-    letterSpacing: 0,
-  );
+  static TextStyle splashPoweredByText(double screenWidth) =>
+      GoogleFonts.poppins(
+        fontSize: 10.58,
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.normal,
+        color: mediumGray,
+        height: 1.0,
+        letterSpacing: 0,
+      );
 
   static TextStyle splashBrandText(double screenWidth) => TextStyle(
     fontSize: 20.36,
@@ -77,32 +77,31 @@ class AppTheme {
     fontWeight: FontWeight.w700,
     color: primaryPurple,
     height: 1.3,
-    letterSpacing: -0.01, // -1% letter spacing
+    letterSpacing: -0.01,
   );
 
   static TextStyle subtitle = GoogleFonts.poppins(
     //register,premium subtitle
     fontSize: 14,
-    fontWeight: FontWeight.w300, // 300 is "Light" weight
-    fontStyle: FontStyle.normal, // Normal font style
+    fontWeight: FontWeight.w300,
+    fontStyle: FontStyle.normal,
     color: Color.fromRGBO(0, 0, 0, 1),
-    height: 1.25, // 125% line height
-    letterSpacing: 0, // 0% letter spacing
+    height: 1.25,
+    letterSpacing: 0,
   );
 
   static TextStyle inputLabel = GoogleFonts.inter(
     fontSize: 14,
-    fontWeight: FontWeight.w400, // 400 is Regular
-    fontStyle: FontStyle.normal, // Regular style
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
     color: Color.fromRGBO(0, 0, 0, 1),
-    height: 1.25, // 125% line height
-    letterSpacing: 0, // 0% letter spacing
+    height: 1.25,
+    letterSpacing: 0,
   );
 
-  // Register screen interactive text styles
   static TextStyle linkText = GoogleFonts.poppins(
     fontSize: 14,
-    fontWeight: FontWeight.w500, // Medium
+    fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     color: Color(0xFF7F4BF7),
     height: 1.25,
@@ -112,15 +111,14 @@ class AppTheme {
 
   static TextStyle loginLinkText = GoogleFonts.inter(
     fontSize: 14,
-    fontWeight: FontWeight.w600, // Semi Bold
+    fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     color: black,
-    height: 1.25, // 125% line height
+    height: 1.25,
     letterSpacing: 0,
-    // vertical-align and leading-trim are not available in Flutter TextStyle
   );
 
-  static  TextStyle buttonText = GoogleFonts.inter(
+  static TextStyle buttonText = GoogleFonts.inter(
     fontSize: 18,
     fontWeight: FontWeight.w600,
     color: white,
@@ -135,7 +133,7 @@ class AppTheme {
   );
 
   // Form field text styles
-  static  TextStyle inputText = GoogleFonts.inter(
+  static TextStyle inputText = GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.w400,
     color: Color(0xff000080),
@@ -151,14 +149,13 @@ class AppTheme {
 
   static TextStyle inputError = GoogleFonts.inter(
     fontSize: 16,
-    fontWeight: FontWeight.w400, // Regular
+    fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     color: error,
-    height: 1.25, // 125% line height
-    letterSpacing: 0, // 0% letter spacing
+    height: 1.25,
+    letterSpacing: 0,
   );
 
-  // Reusable text styles for any screen
   static TextStyle titleLargeStyle = GoogleFonts.poppins(
     fontSize: 32,
     fontWeight: FontWeight.w700,
@@ -167,10 +164,10 @@ class AppTheme {
   );
   static TextStyle titleMediumStyle = GoogleFonts.poppins(
     fontSize: 26,
-    fontWeight: FontWeight.w600, // SemiBold
+    fontWeight: FontWeight.w600,
     color: Color(0xFF663E98),
-    height: 1.3, // 130% line height
-    letterSpacing: -0.01, // -1% letter spacing
+    height: 1.3,
+    letterSpacing: -0.01,
   );
 
   static TextStyle subtitleStyle = GoogleFonts.poppins(
@@ -190,52 +187,47 @@ class AppTheme {
 
   static TextStyle priceStyle = GoogleFonts.poppins(
     fontSize: 18,
-    fontWeight: FontWeight.w600, // SemiBold
+    fontWeight: FontWeight.w600,
     color: onSurface,
-    height: 1.25, // 125% line height
-    letterSpacing: 0, // 0% letter spacing
+    height: 1.25,
+    letterSpacing: 0,
   );
 
   static TextStyle durationStyle = GoogleFonts.poppins(
     fontSize: 16,
-    fontWeight: FontWeight.w500, // Medium
+    fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     color: onSurface,
-    height: 1.25, // 125% line height
-    letterSpacing: 0, // 0% letter spacing
+    height: 1.25,
+    letterSpacing: 0,
   );
 
   static TextStyle captionStyle = GoogleFonts.poppins(
     fontSize: 16,
-    fontWeight: FontWeight.w500, // Medium
+    fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     color: Color(0xFF8696BB),
-    height: 1.25, // 125% line height
-    letterSpacing: 0, // 0% letter spacing
+    height: 1.25,
+    letterSpacing: 0,
   );
 
   static TextStyle bodyTextStyle = GoogleFonts.poppins(
     fontSize: 14,
-    fontWeight: FontWeight.w500, // Medium weight
+    fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     color: Color(0xFF6E6E6E),
-    height: 1.25, // 125% line height
+    height: 1.25,
     letterSpacing: 0,
   );
 
- 
-static TextStyle buttonTextStyle = GoogleFonts.inter(
-  fontSize: 16,
-  fontWeight: FontWeight.w600, // Semi Bold
-  fontStyle: FontStyle.normal,
-  color: white,
-  height: 1.25, // 125% line height
-  letterSpacing: 0,
-  // textAlign and verticalAlign are set in the widget, not TextStyle
-);
-
-
- 
+  static TextStyle buttonTextStyle = GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    color: white,
+    height: 1.25,
+    letterSpacing: 0,
+  );
 
   static const TextStyle headlineMedium = TextStyle(
     fontSize: 28,
@@ -249,16 +241,26 @@ static TextStyle buttonTextStyle = GoogleFonts.inter(
     color: darkGray,
   );
 
-  static const TextStyle titleLarge = TextStyle(
-    fontSize: 20,
+  static TextStyle titleLarge = GoogleFonts.poppins(
     fontWeight: FontWeight.w600,
-    color: primaryPurple,
+    fontStyle: FontStyle.normal,
+    fontSize: 32,
+    color: white,
+    height: 24.9 / 32,
+    letterSpacing: 0,
   );
 
-  static const TextStyle titleMedium = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-    color: darkGray,
+  static TextStyle titleMedium = GoogleFonts.poppins(
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 16,
+    color: white,
+    height: 24.9 / 16,
+    letterSpacing: 0,
+    decoration: TextDecoration.underline,
+    decorationStyle: TextDecorationStyle.solid,
+    decorationThickness: 1,
+    decorationColor: white,
   );
 
   static const TextStyle bodyLarge = TextStyle(
@@ -298,6 +300,65 @@ static TextStyle buttonTextStyle = GoogleFonts.inter(
     letterSpacing: 1.5,
   );
 
+  static TextStyle semiBoldPoppins = GoogleFonts.poppins(
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    fontSize: 17.24,
+    color: darkGray,
+    height: 1.0,
+    letterSpacing: 0,
+  );
+  static TextStyle subTitleText = GoogleFonts.poppins(
+  
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    fontSize: 24,
+    height: 1.0375, // 24.9 / 24
+    letterSpacing: 0,
+  );
+  static TextStyle idText = GoogleFonts.poppins(
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    fontSize: 17.24,
+    color: Color(0xFF7F4BF7),
+    height: 1.0,
+    letterSpacing: 0,
+  );
+  static const TextStyle titleSinhala = TextStyle(
+    fontFamily: 'FMGanganee',
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 14.37,
+    color: Color(0xFF121216),
+    height: 1.0,
+    letterSpacing: 0,
+  );
+  //korean
+  static TextStyle cardSubtitle = GoogleFonts.nunito(
+    fontSize: 9.58,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    color: black,
+    height: 1.0,
+    letterSpacing: 0,
+  );
+  static TextStyle cardSubtitle2 = GoogleFonts.dmSans(
+    fontSize: 12.45,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    color: Color(0xFF727272),
+    height: 1.0,
+    letterSpacing: 0,
+  );
+  static TextStyle cardStatus = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    color: Color(0xFF22C45D),
+    height: 1.0,
+    letterSpacing: 0,
+  );
+
   // Button styles
   static final ButtonStyle primaryButtonStyle = ElevatedButton.styleFrom(
     backgroundColor: primaryPurple,
@@ -305,7 +366,7 @@ static TextStyle buttonTextStyle = GoogleFonts.inter(
     elevation: 4,
     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      textStyle: buttonText,
+    textStyle: buttonText,
   );
 
   static final ButtonStyle registerButtonStyle = ElevatedButton.styleFrom(
@@ -317,7 +378,6 @@ static TextStyle buttonTextStyle = GoogleFonts.inter(
     textStyle: buttonText,
   );
 
- 
   static final ButtonStyle outlinedButtonStyle = OutlinedButton.styleFrom(
     foregroundColor: primaryPurpleButton,
     side: const BorderSide(color: primaryPurpleButton, width: 2),
@@ -340,15 +400,6 @@ static TextStyle buttonTextStyle = GoogleFonts.inter(
     borderRadius: BorderRadius.all(Radius.circular(20)),
     boxShadow: [
       BoxShadow(color: Colors.black26, blurRadius: 16, offset: Offset(0, 8)),
-    ],
-  );
-
-  // App logo container decoration
-  static const BoxDecoration logoContainerDecoration = BoxDecoration(
-    color: white,
-    borderRadius: BorderRadius.all(Radius.circular(30)),
-    boxShadow: [
-      BoxShadow(color: Colors.black26, blurRadius: 20, offset: Offset(0, 10)),
     ],
   );
 
@@ -468,7 +519,7 @@ static TextStyle buttonTextStyle = GoogleFonts.inter(
       outlinedButtonTheme: OutlinedButtonThemeData(style: outlinedButtonStyle),
       inputDecorationTheme: inputDecorationTheme,
       fontFamily: 'Roboto',
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
         headlineMedium: headlineMedium,
         headlineSmall: headlineSmall,
         titleLarge: titleLarge,
@@ -479,40 +530,4 @@ static TextStyle buttonTextStyle = GoogleFonts.inter(
       ),
     );
   }
-
-  // Dark theme (for future use)
-  static ThemeData get darkTheme {
-    return ThemeData(
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryPurple,
-        brightness: Brightness.dark,
-      ),
-      useMaterial3: true,
-      appBarTheme: appBarTheme.copyWith(backgroundColor: darkGray),
-      elevatedButtonTheme: ElevatedButtonThemeData(style: primaryButtonStyle),
-      outlinedButtonTheme: OutlinedButtonThemeData(style: outlinedButtonStyle),
-      fontFamily: 'Roboto',
-    );
-  }
-
-  // Spacing constants
-  static const double spacingXS = 4.0;
-  static const double spacingS = 8.0;
-  static const double spacingM = 16.0;
-  static const double spacingL = 24.0;
-  static const double spacingXL = 32.0;
-  static const double spacingXXL = 48.0;
-
-  // Border radius constants
-  static const double radiusS = 8.0;
-  static const double radiusM = 12.0;
-  static const double radiusL = 16.0;
-  static const double radiusXL = 24.0;
-  static const double radiusXXL = 32.0;
-
-  // Animation durations
-  static const Duration animationFast = Duration(milliseconds: 200);
-  static const Duration animationMedium = Duration(milliseconds: 300);
-  static const Duration animationSlow = Duration(milliseconds: 500);
-  static const Duration animationExtraSlow = Duration(milliseconds: 800);
 }
