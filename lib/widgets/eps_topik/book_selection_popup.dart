@@ -100,10 +100,10 @@ class _BookSelectionPopupState extends State<BookSelectionPopup> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Always reserve space for the check icon
+          
             Container(
               alignment: Alignment.centerRight,
-              height: 25, // Fixed height to maintain consistency
+              height: 25, 
               child:
                   isSelected
                       ? SizedBox(

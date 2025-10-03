@@ -269,10 +269,12 @@ class AppTheme {
     color: darkGray,
   );
 
-  static const TextStyle bodyMedium = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.normal,
-    color: darkGray,
+  static TextStyle bodyMedium = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    color: AppTheme.white,
+    height: 19.2 / 16,
+    letterSpacing: -0.24,
   );
 
   static const TextStyle bodySmall = TextStyle(
@@ -309,7 +311,6 @@ class AppTheme {
     letterSpacing: 0,
   );
   static TextStyle subTitleText = GoogleFonts.poppins(
-  
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     fontSize: 24,
@@ -358,7 +359,38 @@ class AppTheme {
     height: 1.0,
     letterSpacing: 0,
   );
-
+  static TextStyle normalKoreanText = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    color: Color(0xFF000000),
+    height: 19.2 / 16,
+    letterSpacing: -0.24,
+  );
+  static TextStyle normalSinhalaText = GoogleFonts.poppins(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: Color(0xFF7C809E),
+    height: 16.8 / 14,
+    letterSpacing: -0.24,
+  );
+  static TextStyle apparTitleSinhala = TextStyle(
+    fontFamily: 'FMGanganee',
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 20,
+    color: Color(0xFFFFFFFF),
+    height: 1.0,
+    letterSpacing: 0,
+  );
+  static TextStyle apparKorean = GoogleFonts.nunito(
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    fontSize: 20,
+    color: Color(0xFFFFFFFF),
+    height: 1.0,
+    letterSpacing: 0,
+  );
   // Button styles
   static final ButtonStyle primaryButtonStyle = ElevatedButton.styleFrom(
     backgroundColor: primaryPurple,

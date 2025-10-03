@@ -85,7 +85,6 @@ class LessonCard extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // Separate row for word count and progress bar
             Padding(
               padding: const EdgeInsets.all(4.0),
               child: Row(

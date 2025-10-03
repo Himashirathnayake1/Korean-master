@@ -4,10 +4,18 @@ import 'package:korean_master/themes/app_theme.dart';
 import 'package:korean_master/widgets/eps_topik/book_selection_popup.dart';
 import 'package:korean_master/widgets/eps_topik/lesson_card.dart';
 import 'package:korean_master/models/lesson.dart';
+import 'package:korean_master/widgets/common/custom_bottom_navigation_bar.dart';
 
-class EpsTopikScreen extends StatelessWidget {
+class EpsTopikScreen extends StatefulWidget {
   final String selectedBook;
   const EpsTopikScreen({super.key, this.selectedBook = 'EPS Book 01'});
+
+  @override
+  State<EpsTopikScreen> createState() => _EpsTopikScreenState();
+}
+
+class _EpsTopikScreenState extends State<EpsTopikScreen> {
+  int _currentBottomNavIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +85,10 @@ class EpsTopikScreen extends StatelessWidget {
                             // Book title
                             Row(
                               children: [
-                                Text(selectedBook, style: AppTheme.titleMedium),
+                                Text(
+                                  widget.selectedBook,
+                                  style: AppTheme.titleMedium,
+                                ),
                                 const SizedBox(width: 8),
                                 Container(
                                   padding: const EdgeInsets.all(1),
@@ -159,22 +170,28 @@ class EpsTopikScreen extends StatelessWidget {
         ],
       ),
 
-      // Bottom navigation
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: AppTheme.primaryPurple,
-        unselectedItemColor: Colors.grey,
-        currentIndex: 0,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.text_snippet),
-            label: 'Words',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.psychology),
-            label: 'Review',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
+      // Custom Bottom 
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentBottomNavIndex,
+        onTap: (index) {
+          setState(() {
+            _currentBottomNavIndex = index;
+          });
+
+          // Handle navigation based on index
+          switch (index) {
+            case 0:
+              // Words 
+              break;
+            case 1:
+              // Review
+             
+              break;
+            case 2:
+              // Profile
+              break;
+          }
+        },
       ),
     );
   }

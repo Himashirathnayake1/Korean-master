@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:korean_master/models/lesson.dart';
 import 'package:korean_master/models/word.dart';
+import 'package:korean_master/themes/app_theme.dart';
 
-class WordsScreen extends StatelessWidget {
+class WordsScreen extends StatefulWidget {
   final Lesson lesson;
 
   const WordsScreen({super.key, required this.lesson});
 
   @override
+  State<WordsScreen> createState() => _WordsScreenState();
+}
+
+class _WordsScreenState extends State<WordsScreen> {
+
+  @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-    final List<Word> words = _generateWordsForLesson(lesson.id);
+    final List<Word> words = _generateWordsForLesson(widget.lesson.id);
 
     return Scaffold(
       body: Column(
@@ -32,7 +39,7 @@ class WordsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 35),
 
                     // Header row with back button and timer
                     Row(
@@ -49,24 +56,14 @@ class WordsScreen extends StatelessWidget {
                         const SizedBox(width: 6),
                         const SizedBox(width: 8),
                         Text(
-                          lesson.titleTranslated,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
+                          widget.lesson.titleTranslated,
+                          style: AppTheme.apparTitleSinhala,
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(width: 7),
                         Text(
-                          lesson.titleKorean,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 28,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
+                          widget.lesson.titleKorean,
+                          style: AppTheme.apparKorean,
                           textAlign: TextAlign.center,
                         ),
                         const Spacer(),
@@ -78,7 +75,7 @@ class WordsScreen extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 16),
 
                     // Progress bar
                     Padding(
@@ -95,7 +92,7 @@ class WordsScreen extends StatelessWidget {
                             child: Stack(
                               children: [
                                 Container(
-                                  width: 261 * lesson.progress,
+                                  width: 261 * widget.lesson.progress,
                                   height: 12,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
@@ -107,13 +104,8 @@ class WordsScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            '${(lesson.progress * 100).toInt()}% Learned',
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
+                            '${(widget.lesson.progress * 100).toInt()}% Learned',
+                            style: AppTheme.bodyMedium
                           ),
                         ],
                       ),
@@ -127,7 +119,6 @@ class WordsScreen extends StatelessWidget {
           // Word cards list
           Expanded(
             child: Container(
-              color: Colors.grey[50],
               child: ListView.builder(
                 padding: const EdgeInsets.all(16),
                 itemCount: words.length,
@@ -143,38 +134,31 @@ class WordsScreen extends StatelessWidget {
             width: double.infinity,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topCenter,
+                begin: Alignment.topRight,
                 end: Alignment.bottomCenter,
-                colors: [Color(0xFF9558FE), Color(0xFF593598)],
+                colors: [Color(0xFF4B2C91),Color(0xFFB57CFF)],
               ),
             ),
             child: SafeArea(
               top: false,
               child: GestureDetector(
-                onTap: () {
-              
-                },
+                onTap: () {},
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 20,
+                    vertical: 25,
                     horizontal: 20,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         'PRACTICE NOW',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
+                        style: AppTheme.idText.copyWith(fontSize: 21,color: Colors.white),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 10),
                       GestureDetector(
                         onTap: () {
-                         // _showPracticeBottomSheet(context);
+                          // _showPracticeBottomSheet(context);
                         },
                         child: const Icon(
                           Icons.arrow_forward_ios,
@@ -190,6 +174,8 @@ class WordsScreen extends StatelessWidget {
           ),
         ],
       ),
+
+      
     );
   }
 
@@ -200,19 +186,20 @@ class WordsScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Color(0xFFE7D3FF), width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
+        color: const Color(0x14000000),
+        blurRadius: 20,
+        offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Row(
         children: [
-          // Audio icon
+          // Audio icon  not work
           SvgPicture.asset('assets/icons/speak.png'),
-   
+
           const SizedBox(width: 16),
 
           // Word texts
@@ -222,23 +209,14 @@ class WordsScreen extends StatelessWidget {
               children: [
                 Text(
                   word.korean,
-                  style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
+                  style: AppTheme.normalKoreanText,
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 10),
                 Text(
                   word.sinhala,
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.grey[600],
-                  ),
+                  style: AppTheme.normalSinhalaText,
                 ),
+                
               ],
             ),
           ),
@@ -331,6 +309,4 @@ class WordsScreen extends StatelessWidget {
         ];
     }
   }
-
- 
 }
