@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // For TextInputFormatter
+import 'package:flutter/services.dart';
+import 'package:korean_master/screens/eps_topik_screen.dart';
 import 'package:korean_master/themes/app_theme.dart';
+import 'package:korean_master/widgets/eps_topik/book_selection_popup.dart';
 import 'package:korean_master/widgets/common/custom_button.dart';
 
 class VerificationScreen extends StatefulWidget {
@@ -22,7 +24,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
   final List<FocusNode> _focusNodes = List.generate(5, (index) => FocusNode());
   int _currentDigitIndex = 0;
   bool _showError = false;
-
 
   final List<String> _validOtp = ['1', '2', '3', '4', '5'];
 
@@ -105,8 +106,36 @@ class _VerificationScreenState extends State<VerificationScreen> {
         setState(() {
           _showError = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Verification successful!')),
+        Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder:
+                          (context) => EpsTopikScreen(selectedBook: 'EPS Book 01'),
+                    ),
+                  );
+
+        // Show the book selection popup first
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder:
+              (BuildContext context) => BookSelectionPopup(
+                onBookSelected: (bookId) {
+                  // Close the popup
+                  Navigator.of(context).pop();
+
+                  // Determine book title based on bookId
+                  String bookTitle =
+                      bookId == 'book01' ? 'EPS Book 01' : 'EPS Book 02';
+
+                  // Navigate to EPS Topik screen with selected book
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder:
+                          (context) => EpsTopikScreen(selectedBook: bookTitle),
+                    ),
+                  );
+                },
+              ),
         );
       } else {
         setState(() {
