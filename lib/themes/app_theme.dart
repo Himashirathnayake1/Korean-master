@@ -277,10 +277,13 @@ class AppTheme {
     letterSpacing: -0.24,
   );
 
-  static const TextStyle bodySmall = TextStyle(
+  static TextStyle bodyNumbers = GoogleFonts.poppins(
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
     fontSize: 12,
-    fontWeight: FontWeight.normal,
-    color: darkGray,
+    color: white,
+    height: 16.8 / 12,
+    letterSpacing: -0.24,
   );
 
   static const TextStyle subtitleLarge = TextStyle(
@@ -369,6 +372,14 @@ class AppTheme {
   );
   static TextStyle normalSinhalaText = GoogleFonts.poppins(
     fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: Color(0xFF7C809E),
+    height: 16.8 / 14,
+    letterSpacing: -0.24,
+  );
+  static TextStyle normalEnglishText = GoogleFonts.poppins(
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
     fontSize: 14,
     color: Color(0xFF7C809E),
     height: 16.8 / 14,
@@ -558,7 +569,7 @@ class AppTheme {
         titleMedium: titleMedium,
         bodyLarge: bodyLarge,
         bodyMedium: bodyMedium,
-        bodySmall: bodySmall,
+        bodySmall: bodyNumbers,
       ),
     );
   }

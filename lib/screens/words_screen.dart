@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:korean_master/models/lesson.dart';
 import 'package:korean_master/models/word.dart';
 import 'package:korean_master/themes/app_theme.dart';
+import 'package:korean_master/screens/pronunciation_practice_screen.dart';
 
 class WordsScreen extends StatefulWidget {
   final Lesson lesson;
@@ -14,7 +15,6 @@ class WordsScreen extends StatefulWidget {
 }
 
 class _WordsScreenState extends State<WordsScreen> {
-
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -105,7 +105,7 @@ class _WordsScreenState extends State<WordsScreen> {
                           const SizedBox(height: 12),
                           Text(
                             '${(widget.lesson.progress * 100).toInt()}% Learned',
-                            style: AppTheme.bodyMedium
+                            style: AppTheme.bodyMedium,
                           ),
                         ],
                       ),
@@ -136,13 +136,23 @@ class _WordsScreenState extends State<WordsScreen> {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomCenter,
-                colors: [Color(0xFF4B2C91),Color(0xFFB57CFF)],
+                colors: [Color(0xFF4B2C91), Color(0xFFB57CFF)],
               ),
             ),
             child: SafeArea(
               top: false,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => PronunciationPracticeScreen(
+                            lesson: widget.lesson,
+                          ),
+                    ),
+                  );
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     vertical: 25,
@@ -153,18 +163,16 @@ class _WordsScreenState extends State<WordsScreen> {
                     children: [
                       Text(
                         'PRACTICE NOW',
-                        style: AppTheme.idText.copyWith(fontSize: 21,color: Colors.white),
-                      ),
-                      const SizedBox(width: 10),
-                      GestureDetector(
-                        onTap: () {
-                          // _showPracticeBottomSheet(context);
-                        },
-                        child: const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
+                        style: AppTheme.idText.copyWith(
+                          fontSize: 21,
                           color: Colors.white,
                         ),
+                      ),
+                      const SizedBox(width: 10),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Colors.white,
                       ),
                     ],
                   ),
@@ -174,8 +182,6 @@ class _WordsScreenState extends State<WordsScreen> {
           ),
         ],
       ),
-
-      
     );
   }
 
@@ -189,9 +195,9 @@ class _WordsScreenState extends State<WordsScreen> {
         border: Border.all(color: Color(0xFFE7D3FF), width: 1),
         boxShadow: [
           BoxShadow(
-        color: const Color(0x14000000),
-        blurRadius: 20,
-        offset: const Offset(0, 4),
+            color: const Color(0x14000000),
+            blurRadius: 20,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -207,16 +213,9 @@ class _WordsScreenState extends State<WordsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  word.korean,
-                  style: AppTheme.normalKoreanText,
-                ),
+                Text(word.korean, style: AppTheme.normalKoreanText),
                 const SizedBox(height: 10),
-                Text(
-                  word.sinhala,
-                  style: AppTheme.normalSinhalaText,
-                ),
-                
+                Text(word.sinhala, style: AppTheme.normalSinhalaText),
               ],
             ),
           ),
